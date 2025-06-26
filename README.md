@@ -53,44 +53,33 @@ www.joyimarah.name.ng (redirect bucket)
 - aws_cloudfront_distribution: Serves app over HTTPS with caching
 
 - null_resource + local-exec: Syncs dist/ files to the S3 bucket
+- 
 ⚙️ Terraform Workflow
-Initialize Terraform
 
-bash
-Copy
-Edit
+1. Initialize Terraform
+
 terraform init
-Validate Configuration
 
-bash
-Copy
-Edit
+2. Validate Configuration
+   
 terraform validate
-Preview Infrastructure
 
-bash
-Copy
-Edit
+3. Preview Infrastructure
+ 
 terraform plan
-Apply and Deploy
 
-bash
-Copy
-Edit
+4. Apply and Deploy
+
 terraform apply
-(Optional) Tear Down
 
-bash
-Copy
-Edit
+5. (Optional) Tear Down
+
 terraform destroy
 
 🔐 Security Configurations
-Ensure your S3 public access is explicitly allowed using:
+to ensure S3 public access is explicitly allowed using:
 
-hcl
-Copy
-Edit
+
 resource "aws_s3_bucket_public_access_block" "main_block" {
   bucket = aws_s3_bucket.main_site.id
 
@@ -99,29 +88,20 @@ resource "aws_s3_bucket_public_access_block" "main_block" {
   ignore_public_acls      = false
   restrict_public_buckets = false
 }
-Also, make sure your IAM user has sufficient permissions (S3, ACM, CloudFront, Route 53).
+Also, make sure IAM user has sufficient permissions (S3, ACM, CloudFront, Route 53).
 
 ⚠️ Common Issues I Faced
-BlockPublicPolicy error on S3 → Solved with proper PublicAccessBlock
+- BlockPublicPolicy error on S3 → Solved with proper PublicAccessBlock
 
-PendingValidation on ACM → Solved by ensuring DNS validation records were created and propagated
+- PendingValidation on ACM → Solved by ensuring DNS validation records were created and propagated
 
-website_endpoint deprecation warning → Solved by using aws_s3_bucket_website_configuration
+- website_endpoint deprecation warning → Solved by using aws_s3_bucket_website_configuration
 
 🧪 Build & Upload (Vite)
-bash
-Copy
-Edit
-npm run build
-aws s3 sync dist/ s3://joyimarah.name.ng
-Or via Terraform:
+via Terraform:
 
-hcl
-Copy
-Edit
 resource "null_resource" "upload_files" {
   provisioner "local-exec" {
     command = "aws s3 sync ../dist s3://${aws_s3_bucket.main_site.id}"
   }
 }
-
