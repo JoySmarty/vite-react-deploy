@@ -1,10 +1,23 @@
 # Vite React App Deployment on AWS using Terraform
 
-This project demonstrates how to deploy a static Vite-based React application to AWS using Terraform. The infrastructure is fully automated and covers everything from S3 hosting to CloudFront distribution and domain DNS setup with Route 53.
+🚀 Project Overview
+This project demonstrates how I deployed a Vite-powered React application on AWS using Terraform for infrastructure provisioning.
 
-## Live Demo
+It includes a full walkthrough of:
 
-🔗 https://joyimarah.name.ng
+Creating and configuring S3 buckets (for website hosting and redirection)
+
+Setting up ACM SSL certificates for HTTPS
+
+Creating a CloudFront distribution to serve content securely and quickly
+
+Managing DNS records via Route 53
+
+Automating everything with Infrastructure as Code (IaC) using Terraform
+
+✅ Live Demo: https://joyimarah.name.ng
+📖 Medium Article: How I Deployed My Vite React App on AWS Using Terraform
+https://medium.com/@smartyjoy47/how-i-deployed-my-vite-react-app-on-aws-using-terraform-step-by-step-guide-bfa16e685b3b
 
 
 ## Tech Stack
