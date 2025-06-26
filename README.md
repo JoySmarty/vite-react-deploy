@@ -29,7 +29,7 @@ joyimarah.name.ng (main bucket for app files)
 www.joyimarah.name.ng (redirect bucket)
 
 ## Folder Structure
-.
+```bash
 ├── terraform/
 │   ├── main.tf
 │   ├── variables.tf
@@ -38,7 +38,7 @@ www.joyimarah.name.ng (redirect bucket)
 │   └── ...
 ├── dist/ (Vite build output)
 └── README.md
-
+```
 ## Key Terraform Resources
 - aws_s3_bucket: Hosts the static files
 
@@ -53,33 +53,33 @@ www.joyimarah.name.ng (redirect bucket)
 - aws_cloudfront_distribution: Serves app over HTTPS with caching
 
 - null_resource + local-exec: Syncs dist/ files to the S3 bucket
-- 
+ 
 ⚙️ Terraform Workflow
 
 1. Initialize Terraform
-
+```bash
 terraform init
-
+```
 2. Validate Configuration
-   
+  ```bash 
 terraform validate
-
+```
 3. Preview Infrastructure
- 
+ ```bash
 terraform plan
-
+```
 4. Apply and Deploy
-
+```bash
 terraform apply
-
+```
 5. (Optional) Tear Down
-
+```bash
 terraform destroy
-
+```
 🔐 Security Configurations
 to ensure S3 public access is explicitly allowed using:
 
-
+```bash
 resource "aws_s3_bucket_public_access_block" "main_block" {
   bucket = aws_s3_bucket.main_site.id
 
@@ -88,6 +88,7 @@ resource "aws_s3_bucket_public_access_block" "main_block" {
   ignore_public_acls      = false
   restrict_public_buckets = false
 }
+```
 Also, make sure IAM user has sufficient permissions (S3, ACM, CloudFront, Route 53).
 
 ⚠️ Common Issues I Faced
@@ -99,9 +100,10 @@ Also, make sure IAM user has sufficient permissions (S3, ACM, CloudFront, Route 
 
 🧪 Build & Upload (Vite)
 via Terraform:
-
+```bash
 resource "null_resource" "upload_files" {
   provisioner "local-exec" {
     command = "aws s3 sync ../dist s3://${aws_s3_bucket.main_site.id}"
   }
 }
+```
