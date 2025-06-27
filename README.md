@@ -19,6 +19,7 @@ Automating everything with Infrastructure as Code (IaC) using Terraform
 
 
 📖 Medium Article: How I Deployed My Vite React App on AWS Using Terraform
+
 https://medium.com/@smartyjoy47/how-i-deployed-my-vite-react-app-on-aws-using-terraform-step-by-step-guide-bfa16e685b3b
 
 
