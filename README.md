@@ -1,6 +1,6 @@
 # Vite React App Deployment on AWS using Terraform
 
-🚀 Project Overview
+## 🚀 Project Overview 
 This project demonstrates how I deployed a Vite-powered React application on AWS using Terraform for infrastructure provisioning.
 
 It includes a full walkthrough of:
